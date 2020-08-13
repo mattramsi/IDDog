@@ -20,9 +20,26 @@ class ImageViewController: UIViewController {
         
         view.isOpaque = false
         view.backgroundColor = .clear
-//        imageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: ""))
         
+        loadImage()
+        addBlurEffectView()
+    }
+    
+    private func loadImage() {
         Nuke.loadImage(with:  URL(string: imageUrl)!, into: imageView)
+    }
+    
+    private func addBlurEffectView() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        view.sendSubviewToBack(blurEffectView)
+        view.bringSubviewToFront(imageView)
+        
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector (close))
+        blurEffectView.addGestureRecognizer(gesture)
     }
     
     @IBAction func close(_ sender: Any) {

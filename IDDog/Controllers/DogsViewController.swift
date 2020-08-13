@@ -36,6 +36,11 @@ class DogsViewController: UIViewController {
         dogTypesSegmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for:.valueChanged)
         
         dogTypesSegmentedControl.selectedSegmentIndex = 0
+        dogTypesSegmentedControl.backgroundColor = .white
+        
+        for (index, type) in self.vm.types.enumerated() {
+            dogTypesSegmentedControl.setTitle(type.capitalizingFirstLetter(), forSegmentAt: index)
+        }
     }
     
     
@@ -140,3 +145,28 @@ extension DogsViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 }
 
+
+extension DogsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    //--------------------------------------------------------------------------------
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0;
+    }
+
+    //--------------------------------------------------------------------------------
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (self.collectionView.frame.size.width) / 3, height: 130)
+    }
+
+    //--------------------------------------------------------------------------------
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+}

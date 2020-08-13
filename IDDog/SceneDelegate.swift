@@ -58,8 +58,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let vc = storyboard.instantiateViewController(withIdentifier: "DogsViewController") as? DogsViewController {
-                let nav = UINavigationController(rootViewController: vc)
-                nav.modalPresentationStyle = .fullScreen
+                let nav = StandardNavigationController(rootViewController: vc)
                 UIApplication.getTopViewController()?.present(nav, animated: true, completion: nil)
             }
         }
@@ -67,3 +66,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
 }
 
+class StandardNavigationController: UINavigationController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+         modalPresentationStyle = .fullScreen
+         navigationBar.barTintColor = .black
+         let attrs = [ NSAttributedString.Key.foregroundColor: UIColor.white]
+         navigationBar.titleTextAttributes = attrs
+         navigationBar.prefersLargeTitles = true
+         navigationBar.barStyle = .black
+         navigationBar.isTranslucent = false
+    }
+}

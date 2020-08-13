@@ -37,7 +37,8 @@ class LoginViewController: UIViewController {
                         
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         if let vc = storyboard.instantiateViewController(identifier: "DogsViewController") as? DogsViewController {
-                            self.present(vc, animated: true, completion: nil)
+                            let nav = StandardNavigationController(rootViewController: vc)
+                            self.present(nav, animated: true, completion: nil)
                         }
                         
                     }
