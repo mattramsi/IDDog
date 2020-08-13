@@ -64,7 +64,7 @@ class DogsViewController: UIViewController {
     
     private func removeUIViewEmptyCollection() {
         
-        for view in view.subviews {
+        for view in collectionView.subviews {
             if let subview = collectionView.viewWithTag(2) {
                 subview.removeFromSuperview()
             }
@@ -126,7 +126,7 @@ extension DogsViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     
-         let imageUrl = vm.list[indexPath.row]
+        let imageUrl = vm.list[indexPath.row]
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let vc = storyboard.instantiateViewController(identifier: "ImageViewController") as? ImageViewController {
